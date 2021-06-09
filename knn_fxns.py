@@ -44,12 +44,14 @@ def find_k_closest(df, example_row, k):
     """
     k_df=calc_distance_to_all_rows(df,example_row)
     sorted_df=k_df.sort_values(by=['distance_to_ex'])
-    #if(sorted_df.i[k]==sorted_df.i[k+1]):
+    if(sorted_df.index[k]==sorted_df.index[k+1]):
+        choices=[0,1]
+        choice=np.random.choice(choices,1)
+        if(choice==0):
+            sorted_df.drop(sorted_df.index[k])
+        elif(choice==1):
+            sorted_df.drop(sorted_df.index[k+1])
     return sorted_df[0:k]
-        
-                     
-                
-    
     
 def classify(df, example_row, k):
     """
